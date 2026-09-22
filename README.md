@@ -26,8 +26,8 @@ docker compose -f compose.yml up -d
 This starts the gateway and its `/health` endpoint. After application images
 are published, copy `compose.apps.example.yml` to `compose.apps.yml`, select
 release tags in `.env`, and start the combined stack. The data portal is then
-available at `/MACHINE/machine-data/`, for example
-`http://192.168.0.189/wentelteef/machine-data/`.
+available at `/data/`, for example
+`http://192.168.0.189/data/wentelteef/`.
 
 Read [deployment](docs/deployment.md), [adding a machine](docs/adding-a-machine.md),
 and [adding a web service](docs/adding-a-web-service.md) before production use.
@@ -49,7 +49,7 @@ docker compose --env-file .env.local -f compose.yml -f compose.local.yml up -d
 ```
 
 Open `http://127.0.0.1:8098/health`, `http://127.0.0.1:8098/knarskast/`, or
-`http://127.0.0.1:8098/wentelteef/machine-data/`. The data route prompts for
+`http://127.0.0.1:8098/data/`. The data route prompts for
 the local credentials above. Stop only this local stack with
 `docker compose --env-file .env.local -f compose.yml -f compose.local.yml down`.
 Do not add `-v` unless you deliberately want to erase the local test profiles.

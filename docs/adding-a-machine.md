@@ -9,7 +9,7 @@
 5. Run a short acquisition and verify the data appears under the server folder.
 
 No Nginx change is needed for data browsing. The generic route already accepts
-`/rig-03/machine-data/`; the portal returns a useful empty state until that
+`/data/rig-03/`; the portal returns a useful empty state until that
 machine has session manifests.
 
 For future status/telemetry, add the machine to the central registry service
