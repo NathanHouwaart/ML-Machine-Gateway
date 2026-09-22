@@ -1,0 +1,4 @@
+FROM nginx:1.27-alpine
+COPY gateway/nginx.conf /etc/nginx/nginx.conf
+COPY gateway/routes /etc/nginx/routes
+COPY secrets/machine-data.htpasswd /etc/nginx/secrets/machine-data.htpasswd

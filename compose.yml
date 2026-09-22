@@ -5,7 +5,8 @@ services:
     image: nginx:1.27-alpine
     restart: unless-stopped
     ports:
-      - "${GATEWAY_BIND_IP}:80:80"
+      # Production: 192.168.0.189:80. Local test: 127.0.0.1:8098.
+      - "${GATEWAY_BIND}:80"
     volumes:
       - ./gateway/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./gateway/routes:/etc/nginx/routes:ro

@@ -1,0 +1,45 @@
+# Local workstation test. Copy to compose.local.yml and configure .env.local.
+# Nothing here publishes port 80.
+services:
+  gateway:
+    image: ml-machine-gateway-local:latest
+    build:
+      context: .
+      dockerfile: gateway/Dockerfile.local
+    volumes: !reset []
+
+  profile-api:
+    image: knarskast-profile-api:local
+    environment:
+      PORT: "8899"
+      DATA_DIR: /app/data
+      APP_AUTH_DISABLED: "1"
+      BACKUP_ENABLED: "0"
+      CORS_ORIGINS: http://127.0.0.1:8098
+    volumes:
+      - profile-data-local:/app/data:rw
+    networks: [private]
+
+  profile-web:
+    image: knarskast-profile-site:local
+    depends_on: [profile-api]
+    networks: [private]
+
+  testbench-portal-api:
+    image: testbenchdaq-portal-api:latest
+    environment:
+      TBDAQ_DATA_ROOT: /data
+    volumes:
+      - testbench-data-local:/data:ro
+    networks:
+      private:
+        aliases: [portal-api]
+
+  testbench-portal-web:
+    image: testbenchdaq-portal-web:latest
+    depends_on: [testbench-portal-api]
+    networks: [private]
+
+volumes:
+  profile-data-local:
+  testbench-data-local:

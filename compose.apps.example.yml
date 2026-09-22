@@ -7,7 +7,9 @@ services:
     restart: unless-stopped
     volumes:
       - ${TBDAQ_DATA_ROOT}:/data:ro
-    networks: [private]
+    networks:
+      private:
+        aliases: [portal-api]
 
   testbench-portal-web:
     image: ${TBDAQ_PORTAL_WEB_IMAGE}
