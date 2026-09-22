@@ -29,8 +29,10 @@ services:
     image: testbenchdaq-portal-api:latest
     environment:
       TBDAQ_DATA_ROOT: /data
+      TBDAQ_PORTAL_METADATA_ROOT: /metadata
     volumes:
       - ${TBDAQ_LOCAL_DATA_ROOT}:/data:ro
+      - portal-metadata-local:/metadata:rw
     networks:
       private:
         aliases: [portal-api]
@@ -42,3 +44,4 @@ services:
 
 volumes:
   profile-data-local:
+  portal-metadata-local:

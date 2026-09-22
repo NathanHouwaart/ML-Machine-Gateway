@@ -39,6 +39,10 @@ The local stack uses only `127.0.0.1:8098`, a disposable Profile Creator Docker
 volume, and the read-only `C:\ML-Machine-Gateway-TestData` host folder. It
 does not mount server or acquisition data, so it cannot alter it.
 
+The portal also has a small Docker metadata volume for display names. Renaming
+a session never changes acquisition files; the label is used in the portal and
+as the downloaded ZIP's filename/top-level folder.
+
 ```powershell
 Copy-Item .env.local.example .env.local
 Copy-Item compose.local.example.yml compose.local.yml
