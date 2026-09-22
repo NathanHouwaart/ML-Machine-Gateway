@@ -1,0 +1,15 @@
+# Copy selected services into compose.apps.yml after their images are published.
+# compose.apps.yml is intentionally local: it selects the release versions used
+# by this specific server without putting credentials or data into Git.
+services:
+  testbench-portal-api:
+    image: ${TBDAQ_PORTAL_API_IMAGE}
+    restart: unless-stopped
+    volumes:
+      - ${TBDAQ_DATA_ROOT}:/data:ro
+    networks: [private]
+
+  testbench-portal-web:
+    image: ${TBDAQ_PORTAL_WEB_IMAGE}
+    restart: unless-stopped
+    networks: [private]

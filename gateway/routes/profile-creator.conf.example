@@ -1,0 +1,11 @@
+# Example only: rename to profile-creator.conf after the Profile Creator image
+# and service name have been moved into this Compose deployment.
+#
+# location = /knarskast { return 308 /knarskast/; }
+# location /knarskast/ {
+#     set $profile_upstream profile-creator-web:80;
+#     proxy_pass http://$profile_upstream;
+#     proxy_set_header Host $host;
+#     proxy_set_header X-Real-IP $remote_addr;
+#     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+# }
