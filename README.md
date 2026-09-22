@@ -35,7 +35,8 @@ and [adding a web service](docs/adding-a-web-service.md) before production use.
 ## Local workstation test
 
 The repository can safely be tested without the server or its NFS storage.
-The local stack uses only `127.0.0.1:8098` and disposable Docker volumes. It
+The local stack uses only `127.0.0.1:8098`, a disposable Profile Creator Docker
+volume, and the read-only `C:\ML-Machine-Gateway-TestData` host folder. It
 does not mount server or acquisition data, so it cannot alter it.
 
 ```powershell

@@ -1,5 +1,5 @@
 # Local workstation test. Copy to compose.local.yml and configure .env.local.
-# Nothing here publishes port 80.
+# Nothing here publishes port 80. The Testbench bind is read-only inside Docker.
 services:
   gateway:
     image: ml-machine-gateway-local:latest
@@ -30,7 +30,7 @@ services:
     environment:
       TBDAQ_DATA_ROOT: /data
     volumes:
-      - testbench-data-local:/data:ro
+      - ${TBDAQ_LOCAL_DATA_ROOT}:/data:ro
     networks:
       private:
         aliases: [portal-api]
@@ -42,4 +42,3 @@ services:
 
 volumes:
   profile-data-local:
-  testbench-data-local:
