@@ -1,8 +1,9 @@
 # Deployment
 
 Install Docker Engine and the Compose plugin on `192.168.0.189`. NFS remains a
-host service because it owns the physical server disks; containers only receive
-read-only access to measurement data.
+host service because it owns the physical server disks. The portal API receives
+read-only access; the dedicated TestbenchDAQ processor alone receives read/write
+access so it can generate derived signal CSV files and update manifests.
 
 Clone this repository to `/opt/ml-machine-gateway`, create `.env` and
 `compose.apps.yml` from their examples, and create `secrets/machine-data.htpasswd`.
@@ -22,6 +23,11 @@ docker compose -f compose.yml -f compose.apps.yml up -d
 
 Do this only after the referenced application images have been published. Until
 then, start the gateway alone with `docker compose -f compose.yml up -d`.
+
+For a first on-server deployment before registry publishing exists, build the
+three TestbenchDAQ images in its checkout, use those local image tags in the
+gateway `.env`, then start the combined gateway stack. The portal and processor
+must never publish their own host ports; Nginx exposes the portal at `/data/`.
 
 Use immutable image tags in `.env` for production, then back up both
 `/srv/testbenchdaq` and the local `secrets/` directory separately.

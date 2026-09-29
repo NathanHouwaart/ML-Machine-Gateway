@@ -17,5 +17,12 @@ services:
     restart: unless-stopped
     networks: [private]
 
+  testbench-processor:
+    image: ${TBDAQ_PROCESSOR_IMAGE}
+    restart: unless-stopped
+    volumes:
+      - ${TBDAQ_DATA_ROOT}:/data:rw
+    networks: [private]
+
 volumes:
   portal-metadata:

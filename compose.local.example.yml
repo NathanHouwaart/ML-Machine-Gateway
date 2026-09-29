@@ -41,6 +41,11 @@ services:
     image: testbenchdaq-portal-web:latest
     depends_on: [testbench-portal-api]
     networks: [private]
+  testbench-processor:
+    image: testbenchdaq-processor:latest
+    volumes:
+      - ${TBDAQ_LOCAL_DATA_ROOT}:/data:rw
+    networks: [private]
 
 volumes:
   profile-data-local:
